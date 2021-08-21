@@ -5,6 +5,11 @@
 # 不要一下就拉取别人一个插件包N多插件的，多了没用，增加编译错误，自己需要的才好
 # 修改IP项的EOF于EOF之间请不要插入其他扩展代码，可以删除或注释里面原本的代码
 
+# 使用源码自带passwall等出国软件
+#echo src-git diy1 https://github.com/xiaorouji/openwrt-passwall.git >> feeds.conf.default
+#echo src-git helloworld https://github.com/fw876/helloworld >> feeds.conf.default
+#echo src-git OpenClash https://github.com/vernesong/OpenClash.git  >> feeds.conf.default
+#echo src-git opentopd  https://github.com/281677160/AdGuardHome.git  >> feeds.conf.default
 
 cat >$NETIP <<-EOF
 uci set network.lan.ipaddr='192.168.123.1'                                    # IPv4 地址(openwrt后台地址)
