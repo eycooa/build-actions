@@ -19,9 +19,22 @@ uci commit network                                                          # �
 uci set system.@system[0].hostname='OpenWrt-x64'                            # 修改主机名称为OpenWrt-x64
 EOF
 
+# 修改openwrt登陆地址,把下面的192.168.123.1修改成你想要的就可以了
+#sed -i 's/192.168.1.1/192.168.123.1/g' package/base-files/files/bin/config_generate
+
+# 修改主机名字，把X64-WinXin-snailnc修改你喜欢的就行（不能纯数字或者使用中文）
+sed -i '/uci commit system/i\uci set system.@system[0].hostname='X64-WinXin-snailnc'' package/lean/default-settings/files/zzz-default-settings
+
+# 版本号里显示一个自己的名字（281677160 build $(TZ=UTC-8 date "+%Y.%m.%d") @ 这些都是后增加的）
+#sed -i "s/OpenWrt /X64&&WX,snailnc build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
+
+
+# 设置密码为空（安装固件时无需密码登陆，然后自己修改想要的密码）
+#sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz-default-settings
+
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile            # 选择argon为默认主题
 
-sed -i "s/OpenWrt /${Author} compiled in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ           # 增加个性名字 ${Author} 默认为你的github帐号
+sed -i "s/OpenWrt /${etc-snail} compiled in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ           # 增加个性名字 ${Author} 默认为你的github帐号
 
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                             # 设置密码为空
 
